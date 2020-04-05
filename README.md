@@ -1,4 +1,4 @@
-[En](README_EN.md)
+[English](README_EN.md)
 
 # 一个远程桌面代理
 ```
