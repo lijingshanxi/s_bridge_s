@@ -35,12 +35,6 @@ func main() {
 		glog.Error(s)
 		return
 	}
-	if server1 == "" {
-		usage()
-		s := "server1 ip is null"
-		glog.Error(s)
-		return
-	}
 	if server2 == "" {
 		usage()
 		s := "server2 ip is null"
