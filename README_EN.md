@@ -22,7 +22,7 @@ Proxy 2 runs on the VPS, accepts the remote desktop connection request of PC1, a
 ```
 It's easy to compile for go;
 ```
-## 3. 运行
+## 3. Run
 * Note: let's assume that "106.13.33.123" is the public network IP of the VPS, and "172.16.33.123" is the local network IP of the VPS; The compiled program name is main(Linux), main.exe(Windows)
 ```
 Run on VPS:
