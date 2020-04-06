@@ -23,7 +23,10 @@
 ## 1. 租一台云主机, 有一个公网的IP;
 ## 2. 编译
 ```
-go语言编译很简单, 就不提供步骤了;
+Linux:
+go build -o main main.go
+Windows:
+go build -o main.exe main.go
 ```
 ## 3. 运行
 * 注意: 我们假设 "106.13.33.123" 是云主机公网的IP, "172.16.33.123" 是云主机本机的IP; 假设编译出来的程序名字是 main(Linux), main.exe(Windows)
