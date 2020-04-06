@@ -11,6 +11,8 @@ func RunSS(server1, server2 string) {
 	var wg sync.WaitGroup
 	s1Ctx := communication.NewCmnctnCtx(server1)
 	s2Ctx := communication.NewCmnctnCtx(server2)
+	//We assume that the sencond IP is to send data to 3389
+	s2Ctx.IsServerTo3389 = true
 	ctx := &communication.Context{
 		Cmnctn1Ctx: s1Ctx,
 		Cmnctn2Ctx: s2Ctx,
@@ -48,7 +50,7 @@ func RunCC(server1, server2 string) {
 	var wg sync.WaitGroup
 	s1Ctx := communication.NewCmnctnCtx(server1)
 	//We assume that the first IP is to connect to 3389
-	s1Ctx.Is3389 = true
+	s1Ctx.IsClientTo3389 = true
 	s2Ctx := communication.NewCmnctnCtx(server2)
 	ctx := &communication.Context{
 		Cmnctn1Ctx: s1Ctx,
