@@ -34,10 +34,10 @@ func (c *Client) SocketLoop() {
 	var err error
 
 	for !c.myCmnctnCtx.Stop {
-		if !c.myCmnctnCtx.Is3389 {
+		if !c.myCmnctnCtx.IsClientTo3389 {
 			err = c.connect()
 			if err != nil {
-				time.Sleep(time.Duration(100) * time.Millisecond)
+				// time.Sleep(time.Duration(100) * time.Millisecond)
 				continue
 			}
 		}
@@ -90,10 +90,10 @@ func (c *Client) ChanLoop() {
 		glog.V(20).Infof("[%s]chan receive: %s, length:%d",
 			c.myEndpoint(), v.Cmd, len(v.Data))
 		if v.Cmd == "data" {
-			if c.myCmnctnCtx.Is3389 {
-				c.connect()
-			}
 			if c.peerCmnctnCtx.ConnVersion == v.Version {
+				if c.myCmnctnCtx.IsClientTo3389 {
+					c.connect()
+				}
 				c.sendData(v.Data)
 			} else {
 				c.myCmnctnCtx.discardPackNum++

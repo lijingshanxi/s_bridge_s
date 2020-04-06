@@ -20,7 +20,8 @@ type CmnctnCtx struct {
 	Connected               bool
 	PacketChan              chan *common.Packet
 	ConnVersion             uint
-	Is3389                  bool
+	IsClientTo3389          bool
+	IsServerTo3389          bool
 	connMutex               *sync.Mutex
 	discardPackNum          uint
 	discardWriteChanPackNum uint
@@ -34,7 +35,8 @@ func NewCmnctnCtx(endPoint string) *CmnctnCtx {
 		Connected:               false,
 		PacketChan:              nil,
 		ConnVersion:             0,
-		Is3389:                  false,
+		IsClientTo3389:          false,
+		IsServerTo3389:          false,
 		discardPackNum:          0,
 		discardWriteChanPackNum: 0,
 	}

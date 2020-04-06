@@ -53,7 +53,7 @@ func (s *Server) SocketLoop() {
 		err = s.accept()
 		if err != nil {
 			glog.Error("accept err:", err)
-			time.Sleep(time.Duration(100) * time.Millisecond)
+			// time.Sleep(time.Duration(100) * time.Millisecond)
 			continue
 		}
 		s.recvLoop()
@@ -106,6 +106,25 @@ func (s *Server) ChanLoop() {
 		}
 		if v.Cmd == "data" {
 			if s.peerCmnctnCtx.ConnVersion == v.Version {
+				if s.myCmnctnCtx.IsServerTo3389 {
+					var cnt int
+					cnt = 0
+					for !s.myCmnctnCtx.Connected {
+						//wait client
+						time.Sleep(time.Duration(1000) * time.Millisecond)
+						if s.myCmnctnCtx.Connected {
+							break
+						}
+						glog.V(10).Infof("[%s]wait client timeout", s.myEndpoint())
+						cnt++
+						if cnt > 10 {
+							glog.V(10).Infof("[%s]wait long time for client",
+								s.myEndpoint())
+							break
+						}
+						continue
+					}
+				}
 				s.sendData(v.Data)
 			} else {
 				s.myCmnctnCtx.discardPackNum++
