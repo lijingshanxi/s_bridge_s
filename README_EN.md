@@ -26,7 +26,7 @@ It's easy to compile for go;
 * Note: let's assume that "106.13.33.123" is the public network IP of the VPS, and "172.16.33.123" is the local network IP of the VPS; The compiled program name is main(Linux), main.exe(Windows)
 ```
 Run on VPS:
-nohup ./main -log_dir="./log" -v=10 -alsologtostderr=true -st="ss" -s1="172.16.33.123:3399" -s2="172.16.33.123:52201" &
+nohup ./main -log_dir="./log" -v=10 -alsologtostderr=true -st="ss" -s1="172.16.33.123:3390" -s2="172.16.33.123:52201" &
 Run on PC2:
 start .\main.exe -log_dir="./log" -v=10 -alsologtostderr=true -st="cc" -s1="127.0.0.1:3389" -s2="106.13.33.123:52201"
 ```
